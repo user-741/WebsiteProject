@@ -1,14 +1,21 @@
 <?php
-$to = 'recipient@example.com';
-$subject = 'Test Email';
-$message = 'This is a test email.';
-$headers = 'From: sender@example.com' . "\r\n" .
-    'Reply-To: sender@example.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $to = $_POST['email'];
+    $subject = "Reset Password";
+    $message = "We received a request to reset your password. Click the link below to reset your password:\n\nhttps://example.com/resetpassword.php";
 
-if (mail($to, $subject, $message, $headers)) {
-    echo 'Email sent.';
+    // Optional headers
+    $headers = "From: support@example.com" . "\r\n" .
+               "Reply-To: support@example.com" . "\r\n" .
+               "X-Mailer: PHP/" . phpversion();
+
+    // Send email
+    if (mail($to, $subject, $message, $headers)) {
+        echo "<p>A reset password email has been sent to your email address.</p>";
+    } else {
+        echo "<p>There was a problem sending the email. Please try again later.</p>";
+    }
 } else {
-    echo 'Error sending email.';
+    echo "<p>Please fill out the form and submit it.</p>";
 }
 ?>
