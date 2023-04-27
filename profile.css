@@ -65,9 +65,6 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     outline: none;
 }
 
-.button-group {
-    text-align: center;
-}
 
 .btn-primary {
     display: inline-block;
@@ -85,4 +82,35 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
 
 .btn-primary:hover {
     background-color: #222;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.button-group{
+    padding: 15px 25px;
+    cursor: pointer;
+    outline: none;
+    background-color: #333;
+    border-radius: 30px; 
+    width: 100px
+
+}
+
+.button-group:hover{
+    background-color: black;
+}
+
+.button-group:active{
+    background-color: gray;
+    box-shadow: 0 5px #666;
+    transform: translatey(4px);
+}
+
+
+a{
+    color: white;
+    font-family: Arial, sans-serif;
 }
