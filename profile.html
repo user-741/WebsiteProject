@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile Page</title>
- <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <header>
         <h1>Profile Page</h1>
     </header>
     <main>
-        <h2>Welcome, John Doe!</h2> <!--This i dont know yet but this technechtantly should say their name-->
+        <h2>Welcome, $name</h2>
         <div class="form-group">
             <label for="email">Email:</label>
-            <p>john.doe@example.com</p> <!--This should also change with the email they log in with-->
+            <p>john.doe@example.com</p>
         </div>
         <div class="form-group">
             <label for="status">Account Status:</label>
-            <p>Member</p> <!--Make it so if they login in with a certain email/password then the status change-->
+            <p>Member</p>
         </div>
         <div class="button-group">
             <a href="schedule.html">My Schedule</a>
         </div>
+
+        <div id="language">
+            <button id="languageBtn">Change Language</button>
+            <div id="languageSearch">
+                <input type="text" id="languageInput" placeholder="Search for language...">
+                <ul id="languageList"></ul>
+            </div>
+        </div>
+
     </main>
+    <footer>
+      <div class="footer-columns">
+        <div class="footer-section">
+          <h3>Website Info</h3>
+          <ul>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="#">Terms and Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <ul>
+            <li>Email: <a href="mailto:info@drivingmanager.com">info@drivingmanager.com</a></li>
+            <li>Phone: <a href="tel:+61397081319">(03) 9708 1319</a></li>
+            <li>Address: <a href="https://www.google.com/maps/search/Gleneagles+Secondary+College+Endeavour+Hills" target="_blank">Gleneagles Secondary College Endeavour Hills</a>
+            </li>
+          </ul>
+        </div>
+      
+        <div class="footer-section">
+          <h3>Driving Manager</h3>
+          <p>&copy; 2023 Driving Manager. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="profile.js"></script>
 </body>
 </html>

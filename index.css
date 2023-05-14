@@ -15,7 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 76vh;
 }
 
 .login-form {
@@ -133,5 +133,90 @@ body {
 }
 
 .login-form__forgot-password-link:hover, .login-form__forgot-password-link:focus {
+  text-decoration: underline;
+}
+
+/* Change language dropdown styling */
+select#language-toggle {
+  appearance: none;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 10px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 5"><path fill="%23919191" d="M0 0l4 4 4-4z"/></svg>') no-repeat center right;
+}
+
+/* Set styles for language label */
+label.language {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+
+/* Change language dropdown arrow styling */
+select#language-toggle::-ms-expand {
+  display: none;
+}
+
+select#language-toggle::-webkit-appearance {
+  none: none;
+  appearance: none;
+}
+
+select#language-toggle option[value=''] {
+  display: none;
+}
+
+/* Footer css */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #333;
+  color: #fff;
+  padding-top: 25px;
+  z-index: 9999;
+  font-size: xx-small;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-section:last-child {
+  margin-right: 0;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.footer-section li {
+  margin-bottom: 5px;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
   text-decoration: underline;
 }

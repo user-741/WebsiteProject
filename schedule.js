@@ -203,3 +203,19 @@ editButtons.forEach((button) => {
   });
 });
 
+
+
+// Only letters
+function onlyLetters(event) {
+  var input = event.target;
+  var regex = /^[a-zA-Z]+$/;
+  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+
+  if (!regex.test(key)) {
+    event.preventDefault();
+    return false;
+  }
+}
+
+var nameInput = document.getElementById("name");
+nameInput.addEventListener("keypress", onlyLetters);

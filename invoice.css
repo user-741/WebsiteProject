@@ -61,3 +61,82 @@
     outline: none;
     border: 1px solid #2257a8;
   }
+
+  /* Change language dropdown styling */
+select#language-toggle {
+  appearance: none;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 10px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 5"><path fill="%23919191" d="M0 0l4 4 4-4z"/></svg>') no-repeat center right;
+}
+
+/* Set styles for language label */
+label.language {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+
+/* Change language dropdown arrow styling */
+select#language-toggle::-ms-expand {
+  display: none;
+}
+
+select#language-toggle::-webkit-appearance {
+  none: none;
+  appearance: none;
+}
+
+select#language-toggle option[value=''] {
+  display: none;
+}
+
+/* Footer css */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  margin: -10px;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  flex: 1 1 300px;
+  margin-right: 10px; /* Adjust the margin as desired */
+  margin-bottom: 10px; /* Adjust the margin as desired */
+}
+
+.footer-section:last-child {
+  margin-right: 0;
+}
+
+.footer-section h3 {
+  font-size: 16px; /* Adjust the font size as desired */
+  margin-bottom: 8px; /* Adjust the margin as desired */
+}
+
+.footer-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 8px; /* Adjust the margin as desired */
+}
+
+.footer-section li {
+  margin-bottom: 3px; /* Adjust the margin as desired */
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}

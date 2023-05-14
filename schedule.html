@@ -18,10 +18,8 @@
         <a href="profile.html">Home</a>
         <a href="#add-appointment">Add Appointment</a>
         <a href="#browse-appointments">Browse Appointments</a>
-        <a href="invoice-form.html">Invoice</a>
-        <div class="auth-buttons">
-          <a id="logout-button" href="index.html">Logout</a>
-        </div>
+        <a href="invoice.html">Invoice</a>
+        <a id="logout-button" href="index.html">Logout</a>        
       </div>
     </nav>
   </header>
@@ -60,7 +58,7 @@
         </select>
 
         <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required>
+        <input type="number" id="phone" name="phone" required>
 
         <button id="add-appointment-button" type="button">Add</button>
       </form>
@@ -97,11 +95,38 @@
   </main>
 
   <footer>
-    <div>
-      <button id="language-toggle">Language</button>
-      <button id="dark-mode-toggle">Dark Mode</button>
+    <div class="footer-columns">
+      <div class="footer-section">
+        <h3>Website Info</h3>
+        <ul>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-section">
+        <h3>Contact Info</h3>
+        <ul>
+          <li>Email: <a href="mailto:info@drivingmanager.com">info@drivingmanager.com</a></li>
+          <li>Phone: <a href="tel:+61397081319">(03) 9708 1319</a></li>
+          <li>Address: <a href="https://www.google.com/maps/search/Gleneagles+Secondary+College+Endeavour+Hills" target="_blank">Gleneagles Secondary College Endeavour Hills</a>
+          </li>
+        </ul>
+      </div>
+    
+      <div class="footer-section">
+        <h3>Driving Manager</h3>
+        <p>&copy; 2023 Driving Manager. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+  
+  
+  
+
+  <!--Scripts-->
   <script src="schedule.js"></script>
+  <script src="mainButtons.js"></script>
 </body>
 </html>
