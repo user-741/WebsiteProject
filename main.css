@@ -1,0 +1,11 @@
+/* Default CSS values */
+:root {
+    --font-size: 18px;
+    --font-family: Arial;
+    --theme: light;
+    --contrast: 5;
+    /* Add other CSS variables as needed */
+  }
+  
+  /* Add your custom CSS styles here */
+  

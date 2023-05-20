@@ -47,10 +47,6 @@ function enableEditing() {
     document.getElementById('edit-account-name').value = profileData.accountName;
     document.getElementById('edit-logo').src = profileData.logo;
   }
-
-  // Hide the Save button and display the Edit button
-  //saveButton.style.display = 'none';
-  editButton.style.display = 'inline-block';
 }
 
 // Function to save profile data
@@ -76,16 +72,16 @@ function saveProfileData(e) {
 
   profileInfo.style.display = 'block';
   profileEdit.style.display = 'none';
+}
 
-    // Hide the Save button and display the Edit button
-    saveButton.style.display = 'none';
-    editButton.style.display = 'none';
-  }
-  
-  // Event listeners
+// Event listeners
+if (editButton) {
   editButton.addEventListener('click', enableEditing);
+}
+
+if (saveButton) {
   saveButton.addEventListener('click', saveProfileData);
-  
-  // Initial profile display
-  displayProfile();
-  
+}
+
+// Display profile on page load
+window.addEventListener('DOMContentLoaded', displayProfile);

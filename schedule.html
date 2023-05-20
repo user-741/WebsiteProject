@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Driving Instructor Schedule</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="setting.css">
 </head>
 <body>
   <header>
@@ -15,11 +16,12 @@
         <h1>Driving Manager</h1>
       </div>
       <div class="nav-links">
-        <a href="profile.html">Home</a>
+        <a href="profile.html">Profile</a>
         <a href="#add-appointment">Add Appointment</a>
         <a href="#browse-appointments">Browse Appointments</a>
-        <a href="invoice.html">Invoice</a>
-        <a id="logout-button" href="index.html">Logout</a>        
+        <a href="form1.html">Invoice</a>
+        <a href="setting.html">Settings</a>
+        <a id="logout-button" href="login.html">Logout</a>        
       </div>
     </nav>
   </header>
@@ -44,13 +46,13 @@
         <input type="text" id="address" name="address" required>
 
         <label for="type">Type:</label>
-        <select id="type" name="type">
+        <select id="type" name="type" required>
           <option value="appointment">Appointment</option>
           <option value="test">Test</option>
         </select>
 
         <label for="status">Status:</label>
-        <select id="status" name="status">
+        <select id="status" name="status" required>
           <option value="booked">Booked</option>
           <option value="cancelled">Cancelled</option>
           <option value="passed">Passed</option>
@@ -58,7 +60,7 @@
         </select>
 
         <label for="phone">Phone:</label>
-        <input type="number" id="phone" name="phone" required>
+        <input type="tel" id="phone" name="phone" required>
 
         <button id="add-appointment-button" type="button">Add</button>
       </form>
@@ -69,8 +71,20 @@
       <div>
         <label for="search">Search:</label>
         <input type="text" id="search" name="search">
-
-        <button id="sort">Sort</button>
+        <button type="button" id="search-button">Search</button>
+        <button type="button" id="clear-button">Clear</button>
+        <div id="sort-options">
+          <label for="sort-select">Sort By:</label>
+          <select id="sort-select">
+            <option value="date-asc">Date (Ascending)</option>
+            <option value="date-desc">Date (Descending)</option>
+            <option value="name-asc">Name (Ascending)</option>
+            <option value="name-desc">Name (Descending)</option>
+            <option value="type-asc">Type (Ascending)</option>
+            <option value="type-desc">Type (Descending)</option>
+          </select>
+          <button id="sort-button">Sort</button>
+        </div>
       </div>
 
       <table>
@@ -90,43 +104,41 @@
         <tbody>
           <!-- Appointment/Test data goes here -->
         </tbody>
-      </table>
-    </section>
-  </main>
+      </tbody>
+    </table>
+  </section>
+</main>
 
-  <footer>
-    <div class="footer-columns">
-      <div class="footer-section">
-        <h3>Website Info</h3>
-        <ul>
-          <li><a href="aboutus.html">About Us</a></li>
-          <li><a href="#">Terms and Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-    
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <ul>
-          <li>Email: <a href="mailto:info@drivingmanager.com">info@drivingmanager.com</a></li>
-          <li>Phone: <a href="tel:+61397081319">(03) 9708 1319</a></li>
-          <li>Address: <a href="https://www.google.com/maps/search/Gleneagles+Secondary+College+Endeavour+Hills" target="_blank">Gleneagles Secondary College Endeavour Hills</a>
-          </li>
-        </ul>
-      </div>
-    
-      <div class="footer-section">
-        <h3>Driving Manager</h3>
-        <p>&copy; 2023 Driving Manager. All rights reserved.</p>
-      </div>
+<footer>
+  <div class="footer-columns">
+    <div class="footer-section">
+      <h3>Website Info</h3>
+      <ul>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="#">Terms and Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
     </div>
-  </footer>
   
+    <div class="footer-section">
+      <h3>Contact Info</h3>
+      <ul>
+        <li>Email: <a href="mailto:info@drivingmanager.com">info@drivingmanager.com</a></li>
+        <li>Phone: <a href="tel:+61397081319">(03) 9708 1319</a></li>
+        <li>Address: <a href="https://www.google.com/maps/search/Gleneagles+Secondary+College+Endeavour+Hills" target="_blank">Gleneagles Secondary College Endeavour Hills</a></li>
+      </ul>
+    </div>
   
-  
+    <div class="footer-section">
+      <h3>Driving Manager</h3>
+      <p>&copy; 2023 Driving Manager. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
-  <!--Scripts-->
-  <script src="schedule.js"></script>
-  <script src="mainButtons.js"></script>
+<!--Scripts-->
+<script src="schedule.js"></script>
+<script src="mainButtons.js"></script>
+<script src="setting.js"></script>
 </body>
 </html>

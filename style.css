@@ -1,26 +1,26 @@
-/* Global Styles */
-html {
-  scroll-behavior: smooth;
-}
+  /* Global Styles */
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
   }
-  
+
   /* Navigation */
   nav {
     background-color: #333;
     color: #fff;
     padding: 1rem;
   }
-  
+
   .nav-links {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
   }
-  
+
   .nav-links a {
     text-decoration: none;
     color: white;
@@ -29,58 +29,58 @@ body {
     border-radius: 5px;
     transition: all 0.3s ease;
   }
-  
+
   .nav-links a:hover {
     background-color: gray;
     transform: scale(1.1);
   }
 
+  /* Main */
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
 
-/*Main*/
-main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px 0;
-}
+  section {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
 
-section {
-  flex-basis: 100%;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-}
+  section h2 {
+    font-size: 24px;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #333;
+  }
 
-section h2 {
-  font-size: 24px;
-  margin: 0 0 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #333;
-}
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-form label {
+  form label {
     display: flex;
     align-items: center;
     width: 30%;
     margin-right: 2%;
     text-align: left;
     font-size: 18px;
-}
+  }
 
-form input[type="text"],
-form input[type="number"],
-form input[type="date"],
-form input[type="time"],
-form select {
-    width: 1000px;
+  form input[type="text"],
+  form input[type="number"],
+  form input[type="date"],
+  form input[type="time"],
+  form input[type="tel"],
+  form select {
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -88,9 +88,9 @@ form select {
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-}
+  }
 
-form select {
+  form select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -98,10 +98,9 @@ form select {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 3.333L5 8.333l5-5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center right 10px;
-}
+  }
 
-
-form button[type="submit"] {
+  form button[type="submit"] {
     background-color: #333;
     color: #fff;
     border: none;
@@ -110,14 +109,14 @@ form button[type="submit"] {
     padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-form button[type="submit"]:hover {
+  form button[type="submit"]:hover {
     background-color: #eee;
     color: #333;
-}
+  }
 
-#browse-appointments div {
+  #browse-appointments div {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -129,8 +128,14 @@ form button[type="submit"]:hover {
 }
 
 #browse-appointments div input[type="text"] {
-    width: 60%;
+    width: 50%;
     padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 #browse-appointments button {
@@ -147,6 +152,11 @@ form button[type="submit"]:hover {
 #browse-appointments button:hover {
     background-color: #eee;
     color: #333;
+}
+
+#browse-appointments #sort-options label{
+  padding-left: 190px;
+  width: 70px;
 }
 
 table {
@@ -203,56 +213,47 @@ form > div input {
     width: 68%;
 }
 
-
-
-
-
-
-  /*Logo and other stuff*/
+/* Logo and other stuff */
 .logo-container {
     display: flex;
     align-items: center;
     padding: 10px;
-  }
-  
-  .logo {
+}
+
+.logo {
     display: block;
     height: 150px;
     width: 150px;
     margin-right: 10px;
     margin-left: -50px;
-  }
-  
+}
 
-
-
-  
-  /* Change language dropdown styling */
+/* Change language dropdown styling */
 select#language-toggle {
-  appearance: none;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-left: 10px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 5"><path fill="%23919191" d="M0 0l4 4 4-4z"/></svg>') no-repeat center right;
+    appearance: none;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-left: 10px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 5"><path fill="%23919191" d="M0 0l4 4 4-4z"/></svg>') no-repeat center right;
 }
 
 /* Set styles for language label */
 label.language {
-  display: inline-block;
-  margin-right: 10px;
-  margin-bottom: 4px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 4px;
 }
 
 /* Change language dropdown arrow styling */
 select#language-toggle::-ms-expand {
-  display: none;
+    display: none;
 }
 
 select#language-toggle::-webkit-appearance {
-  none: none;
-  appearance: none;
+    none: none;
+    appearance: none;
 }
 
 select#language-toggle option[value=''] {
@@ -277,8 +278,7 @@ select#language-toggle option[value=''] {
   color: black;
 }
 
-
-/*Footer css*/
+/* Footer CSS */
 footer {
   background-color: #333;
   color: #fff;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings - DrivingManager</title>
+    <link rel="stylesheet" type="text/css" href="setting.css">
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="form1.html">Invoice</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="setting.html">Settings</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Settings</h1>
+      <form>
+        <h2>Font Size</h2>
+        <input type="number" id="font-size" name="font-size" min="18" max="32">
+        <h2>Font Family</h2>
+        <select id="font-family" name="font-family">
+          <option value="sans-serif">Sans-serif</option>
+          <option value="serif">Serif</option>
+          <option value="monospace">Monospace</option>
+        </select>
+        <h2>Theme</h2>
+        <select id="theme" name="theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+        <h2>Contrast</h2>
+        <input type="range" id="contrast" name="contrast" min="5" max="10">
+        <button type="submit">Save Changes</button>
+      </form>
+    </main>
+    <script src="setting.js"></script>
+  </body>
+</html>

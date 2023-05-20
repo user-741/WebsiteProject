@@ -1,221 +1,240 @@
-const addAppointmentForm = document.getElementById('appointment-form');
-const appointmentsTableBody = document.querySelector('#browse-appointments table tbody');
-const addAppointmentButton = document.getElementById('add-appointment-button');
+// Add Button
+// When the "Add" button is clicked, collect the input values from the form and add a new row with the entered data to the table.
+document.getElementById("add-appointment-button").addEventListener("click", function() {
+  // Retrieve input values
+  var date = document.getElementById("date").value;
+  var name = document.getElementById("name").value;
+  var fees = document.getElementById("fees").value;
+  var time = document.getElementById("time").value;
+  var address = document.getElementById("address").value;
+  var type = document.getElementById("type").value;
+  var status = document.getElementById("status").value;
+  var phone = document.getElementById("phone").value;
 
-// Load appointments from localStorage and restore them in the table
-if (localStorage.getItem('appointments')) {
-  const appointments = JSON.parse(localStorage.getItem('appointments'));
-  appointments.forEach(function(appointment) {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${appointment.date}</td>
-      <td>${appointment.name}</td>
-      <td>${appointment.fees}</td>
-      <td>${appointment.time}</td>
-      <td>${appointment.address}</td>
-      <td>${appointment.type}</td>
-      <td>${appointment.status}</td>
-      <td>${appointment.phone}</td>
-      <td>
-        <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-      </td>
-    `;
-    appointmentsTableBody.appendChild(row);
-  });
-}
-
-// Add a new appointment to the table and save it to localStorage
-addAppointmentButton.addEventListener('click', function(event) {
-  event.preventDefault();
-
-  // Get the form input values
-  const dateInput = document.getElementById('date').value;
-  const nameInput = document.getElementById('name').value;
-  const feesInput = document.getElementById('fees').value;
-  const timeInput = document.getElementById('time').value;
-  const addressInput = document.getElementById('address').value;
-  const typeInput = document.getElementById('type').value;
-  const statusInput = document.getElementById('status').value;
-  const phoneInput = document.getElementById('phone').value;
-
-  // Create a new appointment object and add it to the table
-  const appointment = {
-    date: dateInput,
-    name: nameInput,
-    fees: feesInput,
-    time: timeInput,
-    address: addressInput,
-    type: typeInput,
-    status: statusInput,
-    phone: phoneInput,
-  };
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td>${dateInput}</td>
-    <td>${nameInput}</td>
-    <td>${feesInput}</td>
-    <td>${timeInput}</td>
-    <td>${addressInput}</td>
-    <td>${typeInput}</td>
-    <td>${statusInput}</td>
-    <td>${phoneInput}</td>
+  // Create a new row in the table with the entered data
+  var table = document.querySelector("#browse-appointments table tbody");
+  var newRow = table.insertRow();
+  newRow.innerHTML = `
+    <td>${date}</td>
+    <td>${name}</td>
+    <td>${fees}</td>
+    <td>${time}</td>
+    <td>${address}</td>
+    <td>${type}</td>
+    <td>${status}</td>
+    <td>${phone}</td>
     <td>
-      <button class="edit-btn">Edit</button>
-      <button class="delete-btn">Delete</button>
+      <button class="edit-button">Edit</button>
+      <button class="delete-button">Delete</button>
     </td>
   `;
-  appointmentsTableBody.appendChild(row);
 
-  // Save the appointments data to localStorage
-  let appointments = [];
-  if (localStorage.getItem('appointments')) {
-    appointments = JSON.parse(localStorage.getItem('appointments'));
-  }
-  appointments.push(appointment);
-  localStorage.setItem('appointments', JSON.stringify(appointments));
-
-  // Clear the form input fields
-  addAppointmentForm.reset();
+  // Clear input fields after adding a new row
+  document.getElementById("date").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("fees").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("address").value = "";
+  document.getElementById("phone").value = "";
 });
 
+// Search Feature
+// When the "Search" button is clicked, filter the table rows based on the entered search term
+document.getElementById("search-button").addEventListener("click", function() {
+  var searchInput = document.getElementById("search").value.toLowerCase();
+  var tableRows = document.querySelectorAll("#browse-appointments table tbody tr");
 
-// Edit and delete button functionality
-appointmentsTableBody.addEventListener('click', function(event) {
-  const clickedElement = event.target;
+  tableRows.forEach(function(row) {
+    var name = row.cells[1].textContent.toLowerCase();
+    var phone = row.cells[7].textContent.toLowerCase();
+    var address = row.cells[4].textContent.toLowerCase();
+    var date = row.cells[0].textContent.toLowerCase();
 
-  // Check if the clicked element is the edit button, and toggle the row's editable state
-  if (clickedElement.classList.contains('edit-btn')) {
-    const row = clickedElement.parentNode.parentNode;
-
-    // Toggle the editable state of each td element in the row
-    row.querySelectorAll('td').forEach(function(td) {
-      td.setAttribute('contenteditable', true);
-    });
-
-    // Change the edit button to a save button
-    clickedElement.classList.replace('edit-btn', 'save-btn');
-    clickedElement.textContent = 'Save';
-  }
-
-  // Check if the clicked element is the save button, and save the edited data
-  if (clickedElement.classList.contains('save-btn')) {
-    const row = clickedElement.parentNode.parentNode;
-    const date = row.querySelector('td:nth-child(1)').textContent;
-    const name = row.querySelector('td:nth-child(2)').textContent;
-    const fees = row.querySelector('td:nth-child(3)').textContent;
-    const time = row.querySelector('td:nth-child(4)').textContent;
-    const address = row.querySelector('td:nth-child(5)').textContent;
-    const type = row.querySelector('td:nth-child(6)').textContent;
-    const status = row.querySelector('td:nth-child(7)').textContent;
-    const phone = row.querySelector('td:nth-child(8)').textContent;
-
-    // Save the edited data to localStorage
-    const appointments = JSON.parse(localStorage.getItem('appointments'));
-    const rowIndex = Array.from(row.parentNode.children).indexOf(row);
-    appointments[rowIndex] = { date, name, fees, time, address, type, status, phone };
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-
-    // Toggle the editable state back to false, and change the save button back to edit
-    row.querySelectorAll('td').forEach(function(td) {
-      td.removeAttribute('contenteditable');
-    });
-    clickedElement.classList.replace('save-btn', 'edit-btn');
-    clickedElement.textContent = 'Edit';
-  }
-
-  // Check if the clicked element is the delete button, and remove the row from the table and from localStorage
-  if (clickedElement.classList.contains('delete-btn')) {
-    const row = clickedElement.parentNode.parentNode;
-    const rowIndex = Array.from(row.parentNode.children).indexOf(row);
-    row.remove();
-
-    const appointments = JSON.parse(localStorage.getItem('appointments'));
-    appointments.splice(rowIndex, 1);
-    localStorage.setItem('appointments', JSON.stringify(appointments));
-  }
-});
-
-// Get all the edit buttons in the document
-const editButtons = document.querySelectorAll('.edit-btn');
-
-// Add a click event listener to each edit button
-editButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    // Get the current row and cells
-    const currentRow = button.parentElement.parentElement;
-    const currentCells = currentRow.querySelectorAll('td');
-
-    // Store the current data in an object
-    const data = {
-      date: currentCells[0].innerText,
-      name: currentCells[1].innerText,
-      fees: currentCells[2].innerText,
-      time: currentCells[3].innerText,
-      address: currentCells[4].innerText,
-      type: currentCells[5].innerText,
-      status: currentCells[6].innerText,
-      phone: currentCells[7].innerText,
-    };
-
-    // If the button contains the "Edit" text, switch to the "Save" button
-    if (button.innerText === "Edit") {
-      // Replace the edit button with a save button
-      const saveButton = document.createElement('button');
-      saveButton.classList.add('save-btn');
-      saveButton.innerText = 'Save';
-      button.parentElement.replaceChild(saveButton, button);
-
-      // Show the edit form and update the input values
-      editForm.style.display = 'block';
-      const formInputs = editForm.querySelectorAll('input');
-      formInputs[0].value = data.date;
-      formInputs[1].value = data.name;
-      formInputs[2].value = data.fees;
-      formInputs[3].value = data.time;
-      formInputs[4].value = data.address;
-      formInputs[5].value = data.type;
-      formInputs[6].value = data.status;
-      formInputs[7].value = data.phone;
-    }
-    // If the button contains the "Save" text, switch back to the "Edit" button
-    else {
-      // Get the data from the form and update the current row
-      const formInputs = editForm.querySelectorAll('input');
-      currentCells[0].innerText = formInputs[0].value;
-      currentCells[1].innerText = formInputs[1].value;
-      currentCells[2].innerText = formInputs[2].value;
-      currentCells[3].innerText = formInputs[3].value;
-      currentCells[4].innerText = formInputs[4].value;
-      currentCells[5].innerText = formInputs[5].value;
-      currentCells[6].innerText = formInputs[6].value;
-      currentCells[7].innerText = formInputs[7].value;
-
-      // Replace the save button with an edit button
-      const editButton = document.createElement('button');
-      editButton.classList.add('edit-btn');
-      editButton.innerText = 'Edit';
-      button.parentElement.replaceChild(editButton, button);
-
-      // Hide the edit form
-      editForm.style.display = 'none';
+    if (
+      name.includes(searchInput) ||
+      phone.includes(searchInput) ||
+      address.includes(searchInput) ||
+      date.includes(searchInput)
+    ) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
     }
   });
 });
 
 
+// Clear Feature
+// When the "Clear" button is clicked, clear the search input and display all table rows
+document.getElementById("clear-button").addEventListener("click", function() {
+  document.getElementById("search").value = "";
+  var tableRows = document.querySelectorAll("#browse-appointments table tbody tr");
+  tableRows.forEach(function(row) {
+    row.style.display = "";
+  });
+});
 
-// Only letters
-function onlyLetters(event) {
-  var input = event.target;
-  var regex = /^[a-zA-Z]+$/;
-  var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+// Sort Feature
+// When the "Sort" button is clicked, sort the table rows based on the selected sort option
+// Get references to the required elements
+const sortSelect = document.getElementById('sort-select');
+const sortButton = document.getElementById('sort-button');
+const appointmentTable = document.querySelector('#browse-appointments table tbody');
 
-  if (!regex.test(key)) {
-    event.preventDefault();
-    return false;
+// Function to sort the table rows based on the selected sort option
+function sortAppointments() {
+  const sortValue = sortSelect.value;
+
+  // Convert the HTMLCollection to an array to make sorting easier
+  const rows = Array.from(appointmentTable.rows);
+
+  rows.sort((a, b) => {
+    const aValue = a.cells[getColumnIndex(sortValue)].textContent.toLowerCase();
+    const bValue = b.cells[getColumnIndex(sortValue)].textContent.toLowerCase();
+
+    return sortValue.includes('asc') ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+  });
+
+  // Clear the table body
+  appointmentTable.innerHTML = '';
+
+  // Append the sorted rows back to the table body
+  rows.forEach(row => appointmentTable.appendChild(row));
+}
+
+// Helper function to get the column index based on the sort value
+function getColumnIndex(sortValue) {
+  const sortKey = sortValue.split('-')[0];
+
+  switch (sortKey) {
+    case 'date':
+      return 0;
+    case 'name':
+      return 1;
+    case 'fees':
+      return 2;
+    case 'time':
+      return 3;
+    case 'address':
+      return 4;
+    case 'type':
+      return 5;
+    case 'status':
+      return 6;
+    case 'phone':
+      return 7;
+    default:
+      return 0;
   }
 }
 
-var nameInput = document.getElementById("name");
-nameInput.addEventListener("keypress", onlyLetters);
+// Attach event listener to the sort button
+sortButton.addEventListener('click', sortAppointments);
+
+
+
+// Save/Edit/Delete Feature
+// Add event listeners to the table for the Save, Edit, and Delete buttons
+document.querySelector("#browse-appointments table").addEventListener("click", function(event) {
+  var target = event.target;
+  var row = target.closest("tr");
+
+  // Edit Button
+  if (target.classList.contains("edit-button")) {
+    var cells = row.cells;
+
+    // Enable editing of the row cells
+    for (var i = 0; i < cells.length - 1; i++) {
+      cells[i].setAttribute("contenteditable", "true");
+    }
+
+    // Change the Edit button to a Save button
+    target.textContent = "Save";
+    target.classList.remove("edit-button");
+    target.classList.add("save-button");
+
+    // Disable editing for other rows
+    var tableRows = document.querySelectorAll("#browse-appointments table tbody tr");
+    tableRows.forEach(function(row) {
+      if (row !== target.closest("tr")) {
+        var cells = row.cells;
+        for (var i = 0; i < cells.length - 1; i++) {
+          cells[i].setAttribute("contenteditable", "false");
+        }
+      }
+    });
+  }
+
+  // Save Button
+  else if (target.classList.contains("save-button")) {
+    var cells = row.cells;
+
+    // Disable editing of the row cells
+    for (var i = 0; i < cells.length - 1; i++) {
+      cells[i].setAttribute("contenteditable", "false");
+    }
+
+    // Change the Save button back to an Edit button
+    target.textContent = "Edit";
+    target.classList.remove("save-button");
+    target.classList.add("edit-button");
+  }
+
+  // Delete Button
+  else if (target.classList.contains("delete-button")) {
+    row.remove();
+  }
+});
+
+// Store Data in Local Storage
+// Before the page unloads, save the table data in local storage
+window.addEventListener("beforeunload", function() {
+  var tableRows = document.querySelectorAll("#browse-appointments table tbody tr");
+  var data = [];
+
+  tableRows.forEach(function(row) {
+    var rowData = {
+      date: row.cells[0].textContent,
+      name: row.cells[1].textContent,
+      fees: row.cells[2].textContent,
+      time: row.cells[3].textContent,
+      address: row.cells[4].textContent,
+      type: row.cells[5].textContent,
+      status: row.cells[6].textContent,
+      phone: row.cells[7].textContent
+    };
+    data.push(rowData);
+  });
+
+  localStorage.setItem("appointmentData", JSON.stringify(data));
+});
+
+// Load Data from Local Storage
+// When the page loads, retrieve the table data from local storage and populate the table
+window.addEventListener("load", function() {
+  var data = JSON.parse(localStorage.getItem("appointmentData"));
+
+  if (data) {
+    var table = document.querySelector("#browse-appointments table tbody");
+
+    data.forEach(function(rowData) {
+      var newRow = table.insertRow();
+      newRow.innerHTML = `
+        <td>${rowData.date}</td>
+        <td>${rowData.name}</td>
+        <td>${rowData.fees}</td>
+        <td>${rowData.time}</td>
+        <td>${rowData.address}</td>
+        <td>${rowData.type}</td>
+        <td>${rowData.status}</td>
+        <td>${rowData.phone}</td>
+        <td>
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Delete</button>
+          </td>
+        `;
+      });
+    }
+  });
+  
+

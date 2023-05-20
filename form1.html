@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tax Invoice - Form 1</title>
+  <link rel="stylesheet" href="form1.css">
+  <link rel="stylesheet" href="setting.css">
+</head>
+<body>
+  <h1>Tax Invoice - Form 1</h1>
+  <form action="generate_invoice.php" method="POST">
+    <label for="to_whom">To whom:</label>
+    <input type="text" id="to_whom" name="to_whom" required>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" required>
+
+    <label for="unit_price">Unit Price:</label>
+    <input type="number" id="unit_price" name="unit_price" step="0.01" required>
+
+    <label for="invoice_date">Date of Invoice:</label>
+    <input type="date" id="invoice_date" name="invoice_date" required>
+
+    <label for="invoice_number">Invoice Number:</label>
+    <input type="text" id="invoice_number" name="invoice_number" required>
+
+    <button type="submit" href="generate_invoice.php">submit</button>
+  </form>
+  <script src="setting.js"></script>
+</body>
+</html>
